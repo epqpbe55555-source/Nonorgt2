@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study Smart — Transition Metals in Medicine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#14161a;
+  --bg-alt:#191c21;
+  --panel:#1c2026;
+  --panel-2:#20242b;
+  --line:#2b3038;
+  --line-soft:#22262d;
+  --text:#ece9e2;
+  --text-dim:#9aa0aa;
+  --text-faint:#666d78;
+  --iron:#c1502e;
+  --iron-soft:#3a241d;
+  --copper:#59a893;
+  --copper-soft:#1e332e;
+  --silver:#aeb8c4;
+  --silver-soft:#2a2f36;
+  --bleo:#c9a15a;
+  --bleo-soft:#332b1c;
+  --serif:'Fraunces', Georgia, serif;
+  --sans:'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  --mono:'IBM Plex Mono', 'Courier New', monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--sans);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--copper);color:#0e1210;}
+a{color:inherit;}
+button{font-family:inherit;cursor:pointer;}
+
+/* ---------- Header ---------- */
+header.hero{
+  padding:28px 18px 20px;
+  border-bottom:1px solid var(--line);
+  background:
+    linear-gradient(180deg, var(--bg-alt), var(--bg));
+}
+.hero-inner{max-width:920px;margin:0 auto;}
+.eyebrow-row{
+  display:flex; gap:8px; align-items:center; margin-bottom:14px;
+}
+.mini-tile{
+  width:26px;height:26px;border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:11px;font-weight:600;
+  color:var(--text-dim);
+}
+.mini-tile.fe{border-color:#5a3226;color:var(--iron);}
+.mini-tile.cu{border-color:#2c4a41;color:var(--copper);}
+.mini-tile.ag{border-color:#3c434c;color:var(--silver);}
+h1.title{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:clamp(34px, 8vw, 56px);
+  margin:0 0 8px;
+  letter-spacing:-0.01em;
+}
+.subtitle{
+  color:var(--text-dim);
+  font-size:15px;
+  max-width:55ch;
+  margin:0;
+}
+
+/* ---------- Nav ---------- */
+nav.tabs{
+  position:sticky; top:0; z-index:50;
+  display:flex;
+  overflow-x:auto;
+  background:var(--bg);
+  border-bottom:1px solid var(--line);
+  scrollbar-width:none;
+}
+nav.tabs::-webkit-scrollbar{display:none;}
+nav.tabs button{
+  flex:0 0 auto;
+  background:none;border:none;
+  color:var(--text-dim);
+  padding:14px 18px;
+  font-size:14px;
+  display:flex; align-items:center; gap:9px;
+  border-bottom:2px solid transparent;
+  white-space:nowrap;
+  transition:color .15s ease;
+}
+nav.tabs button .tnum{
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--text-faint);
+  border:1px solid var(--line);
+  width:18px;height:18px;
+  display:flex;align-items:center;justify-content:center;
+}
+nav.tabs button.active{ color:var(--text); border-bottom-color:var(--copper); }
+nav.tabs button.active .tnum{ color:var(--copper); border-color:var(--copper); }
+
+main{max-width:920px; margin:0 auto; padding:26px 18px 80px;}
+section.pane{display:none;}
+section.pane.active{display:block; animation:fade .25s ease;}
+@keyframes fade{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:none;}}
+
+h2.pane-title{
+  font-family:var(--serif);
+  font-size:26px;
+  font-weight:600;
+  margin:0 0 6px;
+}
+p.pane-desc{
+  color:var(--text-dim);
+  font-size:14px;
+  margin:0 0 26px;
+  max-width:60ch;
+}
+
+/* ---------- Element tag chip ---------- */
+.tag{
+  display:inline-flex; align-items:center; gap:5px;
+  font-family:var(--mono); font-size:10.5px; font-weight:600;
+  padding:2px 7px; border:1px solid var(--line); letter-spacing:.02em;
+}
+.tag.fe{color:var(--iron); border-color:#4a2c22;}
+.tag.cu{color:var(--copper); border-color:#28453c;}
+.tag.ag{color:var(--silver); border-color:#3a414a;}
+.tag.bleo{color:var(--bleo); border-color:#4a3d24;}
+
+/* ================= OVERVIEW ================= */
+.stat-strip{
+  display:flex; gap:10px; overflow-x:auto; padding-bottom:10px; margin-bottom:28px;
+  scrollbar-width:none;
+}
+.stat-strip::-webkit-scrollbar{display:none;}
+.stat-chip{
+  flex:0 0 auto; background:var(--panel); border:1px solid var(--line);
+  padding:10px 14px; min-width:132px;
+}
+.stat-chip .n{font-family:var(--serif); font-size:20px; color:var(--copper);}
+.stat-chip .l{font-size:11px; color:var(--text-dim); margin-top:2px;}
+
+.ov-grid{display:grid; grid-template-columns:1fr; gap:18px;}
+@media(min-width:760px){ .ov-grid{grid-template-columns:1fr 1fr 1fr;} }
+.ov-card{background:var(--panel); border:1px solid var(--line); padding:18px;}
+.ov-card .head{display:flex; align-items:center; gap:10px; margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid var(--line-soft);}
+.ov-card .head h3{font-family:var(--serif); font-size:19px; margin:0; font-weight:600;}
+.ov-card ul{margin:0; padding-left:16px;}
+.ov-card li{font-size:13.5px; margin-bottom:8px; color:#d8d5cd;}
+.ov-card li b{color:var(--text); font-weight:600;}
+.ov-card.fe{border-top:2px solid var(--iron);}
+.ov-card.cu{border-top:2px solid var(--copper);}
+.ov-card.ag{border-top:2px solid var(--silver);}
+
+/* ================= DIAGRAMS ================= */
+.diagram-block{
+  background:var(--panel); border:1px solid var(--line); padding:18px; margin-bottom:22px;
+}
+.diagram-block h3{font-family:var(--serif); font-size:19px; margin:0 0 4px; font-weight:600;}
+.diagram-block p.note{color:var(--text-dim); font-size:13px; margin:0 0 16px;}
+
+.flow-row{display:flex; overflow-x:auto; gap:0; padding-bottom:6px; scrollbar-width:none;}
+.flow-row::-webkit-scrollbar{display:none;}
+.flow-node{
+  flex:0 0 auto; background:var(--panel-2); border:1px solid var(--line);
+  padding:10px 13px; font-size:12.5px; cursor:pointer; min-width:118px; text-align:center;
+  transition:border-color .15s, background .15s;
+}
+.flow-node b{display:block; font-size:12.5px; margin-bottom:2px;}
+.flow-node small{color:var(--text-dim); font-size:10.5px;}
+.flow-node.active{border-color:var(--copper); background:var(--copper-soft);}
+.flow-arrow{display:flex; align-items:center; padding:0 6px; color:var(--text-faint); font-family:var(--mono);}
+.detail-box{
+  margin-top:14px; padding:13px 15px; background:var(--bg-alt); border-left:2px solid var(--copper);
+  font-size:13.5px; color:#d8d5cd; min-height:20px;
+}
+
+.pill-ring{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:6px;}
+.pill{
+  background:var(--panel-2); border:1px solid var(--line); padding:7px 12px;
+  font-size:12.5px; cursor:pointer;
+}
+.pill.active{border-color:var(--iron); color:var(--iron); background:var(--iron-soft);}
+
+table.cmp{width:100%; border-collapse:collapse; font-size:13px;}
+table.cmp th{
+  text-align:left; font-family:var(--mono); font-size:11px; color:var(--text-dim);
+  border-bottom:1px solid var(--line); padding:8px 6px; font-weight:500;
+}
+table.cmp td{padding:9px 6px; border-bottom:1px solid var(--line-soft); vertical-align:top;}
+table.cmp tr.row-head{cursor:pointer;}
+table.cmp tr.row-head:hover td{color:var(--copper);}
+table.cmp tr.detail-row td{background:var(--bg-alt); color:var(--text-dim); font-size:12.5px; padding:11px;}
+table.cmp tr.detail-row{display:none;}
+table.cmp tr.detail-row.open{display:table-row;}
+
+.domain-row{display:grid; grid-template-columns:1fr; gap:8px;}
+@media(min-width:640px){ .domain-row{grid-template-columns:1fr 1fr 1fr;} }
+.domain-box{
+  border:1px solid var(--line); background:var(--panel-2); padding:12px; cursor:pointer; text-align:left;
+}
+.domain-box b{display:block; font-size:13px; margin-bottom:3px;}
+.domain-box.active{border-color:var(--bleo);}
+
+.stepper{display:flex; gap:6px; margin-bottom:2px;}
+.step-btn{
+  flex:1; background:var(--panel-2); border:1px solid var(--line); padding:9px 6px;
+  font-size:12px; text-align:center;
+}
+.step-btn .snum{font-family:var(--mono); color:var(--text-faint); display:block; font-size:10px; margin-bottom:3px;}
+.step-btn.active{border-color:var(--bleo); color:var(--bleo);}
+
+.toggle-row{display:flex; align-items:center; gap:10px; margin-bottom:14px;}
+.switch{
+  width:46px; height:24px; background:var(--panel-2); border:1px solid var(--line);
+  position:relative; cursor:pointer; flex:0 0 auto;
+}
+.switch .knob{
+  width:18px; height:18px; background:var(--text-dim); position:absolute; top:2px; left:2px;
+  transition:left .18s ease, background .18s ease;
+}
+.switch.on{border-color:var(--iron);}
+.switch.on .knob{left:24px; background:var(--iron);}
+.toggle-label{font-size:13px; color:var(--text-dim);}
+.toggle-label b{color:var(--text);}
+
+.matrix-tiles{display:flex; gap:8px; margin-bottom:14px;}
+.mtile{
+  flex:1; border:1px solid var(--line); padding:8px; text-align:center; cursor:pointer; font-family:var(--mono); font-size:12px;
+  color:var(--text-dim);
+}
+.mtile.fe.active{border-color:var(--iron); color:var(--iron); background:var(--iron-soft);}
+.mtile.cu.active{border-color:var(--copper); color:var(--copper); background:var(--copper-soft);}
+.mtile.ag.active{border-color:var(--silver); color:var(--silver); background:var(--silver-soft);}
+.matrix-col{display:none;}
+.matrix-col.show{display:table-cell;}
+
+/* ================= MINI MAP ================= */
+.mm-wrap{display:grid; grid-template-columns:1fr; gap:14px;}
+@media(min-width:760px){ .mm-wrap{grid-template-columns:270px 1fr;} }
+.mm-list{border:1px solid var(--line); background:var(--panel); max-height:560px; overflow-y:auto;}
+.mm-group-label{
+  font-family:var(--mono); font-size:10.5px; color:var(--text-faint); text-transform:uppercase;
+  padding:10px 12px 4px;
+}
+.mm-item{
+  display:block; width:100%; text-align:left; background:none; border:none; border-left:2px solid transparent;
+  color:var(--text-dim); padding:8px 12px; font-size:13.5px;
+}
+.mm-item:hover{color:var(--text);}
+.mm-item.active{color:var(--text); border-left-color:var(--copper); background:var(--bg-alt);}
+.mm-panel{
+  border:1px solid var(--line); background:var(--panel); padding:20px; min-height:280px;
+  position:sticky; top:60px; align-self:start;
+}
+.mm-panel h4{font-family:var(--serif); font-size:20px; margin:0 0 12px; font-weight:600;}
+.mm-panel p{font-size:14px; color:#d8d5cd; margin:0 0 10px;}
+.mm-empty{color:var(--text-faint); font-size:13.5px;}
+
+/* ================= FLASH CARDS ================= */
+.fc-filters{display:flex; gap:8px; margin-bottom:18px; flex-wrap:wrap;}
+.fc-filter{
+  background:var(--panel-2); border:1px solid var(--line); padding:6px 12px; font-size:12.5px; color:var(--text-dim);
+}
+.fc-filter.active{color:var(--text); border-color:var(--copper);}
+.fc-progress{font-family:var(--mono); font-size:12px; color:var(--text-faint); margin-bottom:10px;}
+.fc-stage{perspective:1200px; height:250px; margin-bottom:16px;}
+.fc-card{
+  position:relative; width:100%; height:100%; cursor:pointer;
+  transform-style:preserve-3d; transition:transform .5s cubic-bezier(.4,.2,.2,1);
+}
+.fc-card.flipped{transform:rotateY(180deg);}
+.fc-face{
+  position:absolute; inset:0; backface-visibility:hidden;
+  border:1px solid var(--line); background:var(--panel);
+  display:flex; flex-direction:column; justify-content:center; padding:26px;
+}
+.fc-face .lbl{font-family:var(--mono); font-size:10.5px; color:var(--text-faint); margin-bottom:12px;}
+.fc-face p{font-family:var(--serif); font-size:19px; line-height:1.35; margin:0; font-weight:500;}
+.fc-back{transform:rotateY(180deg); border-color:var(--copper);}
+.fc-back p{font-family:var(--sans); font-size:15px; font-weight:400; color:#d8d5cd;}
+.fc-controls{display:flex; gap:8px; justify-content:center;}
+.fc-btn{
+  background:var(--panel-2); border:1px solid var(--line); color:var(--text); padding:9px 16px; font-size:13px;
+}
+.fc-btn:hover{border-color:var(--copper);}
+
+/* ================= QUIZ ================= */
+.qz-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; gap:10px; flex-wrap:wrap;}
+.qz-score{font-family:var(--mono); font-size:12.5px; color:var(--text-dim);}
+.qz-bar{height:3px; background:var(--line); margin-bottom:22px;}
+.qz-bar-fill{height:100%; background:var(--copper); width:0%; transition:width .25s ease;}
+.qz-card{background:var(--panel); border:1px solid var(--line); padding:20px;}
+.qz-tag-row{margin-bottom:10px;}
+.qz-q{font-family:var(--serif); font-size:19px; font-weight:500; margin:0 0 18px; line-height:1.35;}
+.qz-opt{
+  display:block; width:100%; text-align:left; background:var(--panel-2); border:1px solid var(--line);
+  color:var(--text); padding:12px 14px; margin-bottom:9px; font-size:14px;
+}
+.qz-opt:hover{border-color:var(--text-dim);}
+.qz-opt.correct{border-color:var(--copper); background:var(--copper-soft); color:var(--copper);}
+.qz-opt.wrong{border-color:var(--iron); background:var(--iron-soft); color:var(--iron);}
+.qz-opt[disabled]{cursor:default;}
+.qz-next{
+  margin-top:6px; background:none; border:1px solid var(--line); color:var(--text-dim); padding:9px 16px; font-size:13px;
+}
+.qz-next.show{color:var(--text); border-color:var(--copper);}
+.qz-result{text-align:center; padding:40px 16px;}
+.qz-result .big{font-family:var(--serif); font-size:44px; color:var(--copper); margin-bottom:6px;}
+.qz-restart{margin-top:16px; background:var(--panel-2); border:1px solid var(--line); color:var(--text); padding:10px 20px; font-size:13.5px;}
+
+/* ---------- Footer ---------- */
+footer{
+  border-top:1px solid var(--line); padding:22px 18px; text-align:center;
+  font-family:var(--mono); font-size:11.5px; color:var(--text-faint);
+}
+
+@media(max-width:600px){
+  .fc-stage{height:290px;}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow-row">
+      <div class="mini-tile fe">Fe</div>
+      <div class="mini-tile cu">Cu</div>
+      <div class="mini-tile ag">Ag</div>
+    </div>
+    <h1 class="title">Study Smart</h1>
+    <p class="subtitle">A working set of notes on iron, copper, and silver in the body — their transport proteins, medicinal uses, and the disorders that follow when the balance breaks.</p>
+  </div>
+</header>
+
+<nav class="tabs">
+  <button data-tab="overview" class="active"><span class="tnum">1</span>Overview</button>
+  <button data-tab="diagrams"><span class="tnum">2</span>Diagrams</button>
+  <button data-tab="minimap"><span class="tnum">3</span>Mini Map</button>
+  <button data-tab="flashcards"><span class="tnum">4</span>Flash Cards</button>
+  <button data-tab="quiz"><span class="tnum">5</span>Quiz Bank</button>
+</nav>
+
+<main>
+
+<!-- ============ 1. OVERVIEW ============ -->
+<section class="pane active" id="overview">
+  <h2 class="pane-title">Overview</h2>
+  <p class="pane-desc">The essentials only — no full lecture, just the numbers and ideas worth carrying into an exam.</p>
+
+  <div class="stat-strip" id="statStrip"></div>
+
+  <div class="ov-grid" id="ovGrid"></div>
+</section>
+
+<!-- ============ 2. DIAGRAMS ============ -->
+<section class="pane" id="diagrams">
+  <h2 class="pane-title">Interactive Diagrams</h2>
+  <p class="pane-desc">Every figure below responds to a tap — click a stage, a ligand, a domain, or a row to open its detail.</p>
+
+  <!-- Iron journey -->
+  <div class="diagram-block">
+    <h3>The Iron Journey</h3>
+    <p class="note">Tap a stage to see what happens there.</p>
+    <div class="flow-row" id="ironFlow"></div>
+    <div class="detail-box" id="ironFlowDetail">Select a stage above.</div>
+  </div>
+
+  <!-- Transferrin -->
+  <div class="diagram-block">
+    <h3>Transferrin's Fe³⁺ Binding Site</h3>
+    <p class="note">A single hexa-coordinate iron site — tap each ligand.</p>
+    <div class="pill-ring" id="transferrinRing"></div>
+    <div class="detail-box" id="transferrinDetail">Select a ligand above.</div>
+  </div>
+
+  <!-- Heme protein comparison table -->
+  <div class="diagram-block">
+    <h3>Heme-Iron Proteins Compared</h3>
+    <p class="note">Tap a row to expand it.</p>
+    <table class="cmp" id="hemeTable"></table>
+  </div>
+
+  <!-- Bleomycin domains -->
+  <div class="diagram-block">
+    <h3>Bleomycin — Structural Domains</h3>
+    <p class="note">Tap a domain to see its role.</p>
+    <div class="domain-row" id="bleoDomains"></div>
+    <div class="detail-box" id="bleoDomainDetail">Select a domain above.</div>
+  </div>
+
+  <!-- Bleomycin mode of action -->
+  <div class="diagram-block">
+    <h3>Bleomycin — Mode of Action</h3>
+    <p class="note">Three steps, in order — tap to walk through the mechanism.</p>
+    <div class="stepper" id="bleoSteps"></div>
+    <div class="detail-box" id="bleoStepDetail"></div>
+  </div>
+
+  <!-- Copper pathway + Wilson toggle -->
+  <div class="diagram-block">
+    <h3>Copper Transport — Normal vs. Wilson Disease</h3>
+    <p class="note">Flip the switch to see what changes when ATP7B is defective.</p>
+    <div class="toggle-row">
+      <div class="switch" id="wilsonSwitch"><div class="knob"></div></div>
+      <div class="toggle-label">ATP7B gene: <b id="wilsonState">Normal</b></div>
+    </div>
+    <div class="flow-row" id="copperFlow"></div>
+    <div class="detail-box" id="copperFlowDetail">Select a stage above.</div>
+  </div>
+
+  <!-- Comparison matrix -->
+  <div class="diagram-block">
+    <h3>Fe · Cu · Ag — Side by Side</h3>
+    <p class="note">Tap an element tile to isolate its column.</p>
+    <div class="matrix-tiles">
+      <div class="mtile fe active" data-el="fe">Fe</div>
+      <div class="mtile cu active" data-el="cu">Cu</div>
+      <div class="mtile ag active" data-el="ag">Ag</div>
+    </div>
+    <div style="overflow-x:auto;">
+      <table class="cmp" id="matrixTable"></table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. MINI MAP ============ -->
+<section class="pane" id="minimap">
+  <h2 class="pane-title">Mini Map</h2>
+  <p class="pane-desc">Tap any topic on the left — the full note opens here, on the right.</p>
+  <div class="mm-wrap">
+    <div class="mm-list" id="mmList"></div>
+    <div class="mm-panel" id="mmPanel">
+      <p class="mm-empty">Select a topic to read its note.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. FLASH CARDS ============ -->
+<section class="pane" id="flashcards">
+  <h2 class="pane-title">Flash Cards</h2>
+  <p class="pane-desc">Tap a card to flip it. Filter by topic, shuffle, or move through in order.</p>
+
+  <div class="fc-filters" id="fcFilters"></div>
+  <div class="fc-progress" id="fcProgress"></div>
+
+  <div class="fc-stage">
+    <div class="fc-card" id="fcCard">
+      <div class="fc-face fc-front">
+        <div class="lbl">QUESTION</div>
+        <p id="fcFrontText"></p>
+      </div>
+      <div class="fc-face fc-back">
+        <div class="lbl">ANSWER</div>
+        <p id="fcBackText"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-controls">
+    <button class="fc-btn" id="fcPrev">← Prev</button>
+    <button class="fc-btn" id="fcFlip">Flip</button>
+    <button class="fc-btn" id="fcShuffle">Shuffle</button>
+    <button class="fc-btn" id="fcNext">Next →</button>
+  </div>
+</section>
+
+<!-- ============ 5. QUIZ BANK ============ -->
+<section class="pane" id="quiz">
+  <h2 class="pane-title">Quiz Bank</h2>
+  <p class="pane-desc">Answer choices are shuffled each time. Pick one to see if you're right.</p>
+
+  <div class="qz-top">
+    <div class="qz-score" id="qzProgress"></div>
+    <div class="qz-score" id="qzScore">Score: 0 / 0</div>
+  </div>
+  <div class="qz-bar"><div class="qz-bar-fill" id="qzBarFill"></div></div>
+
+  <div id="qzArea"></div>
+</section>
+
+</main>
+
+<footer>© Anmar Taha — Study Smart</footer>
+
+<script>
+/* ============================================================
+   TAB NAVIGATION
+============================================================ */
+const tabBtns = document.querySelectorAll('nav.tabs button');
+const panes = document.querySelectorAll('section.pane');
+tabBtns.forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    tabBtns.forEach(b=>b.classList.remove('active'));
+    panes.forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    window.scrollTo({top:0, behavior:'instant'});
+  });
+});
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+
+/* ============================================================
+   1. OVERVIEW
+============================================================ */
+const stats = [
+  {n:'26', l:'Fe atomic number'},
+  {n:'4200 mg', l:'Total body iron (70 kg adult)'},
+  {n:'~40 mg/day', l:'Transferrin carrying capacity'},
+  {n:'15 mg / 10%', l:'Dietary iron / fraction absorbed'},
+  {n:'ATP7B', l:'Gene defective in Wilson disease'},
+  {n:'~50%', l:'Dietary copper absorbed'},
+  {n:'Ag⁺ = 0', l:'No known biological role for silver'},
+];
+document.getElementById('statStrip').innerHTML = stats.map(s=>`
+  <div class="stat-chip"><div class="n">${s.n}</div><div class="l">${s.l}</div></div>
+`).join('');
+
+const ovData = [
+  {cls:'fe', title:'Iron (Fe)', items:[
+    'Group 8, atomic number 26. Essential trace element for nearly all living organisms.',
+    'Functional iron (65%) = hemoglobin + myoglobin; the rest is storage and transport iron.',
+    'Absorbed in the <b>duodenum & upper jejunum</b>; bicarbonate further down makes it insoluble.',
+    '<b>Transferrin</b> carries Fe³⁺ (hexa-coordinate: His-N, 2× Tyr-O, Asp-carboxylate, carbonate).',
+    '<b>Ferritin</b> stores Fe³⁺ in the liver and spleen.',
+    'Hemoglobin = tetramer, 4 heme groups, cooperative O₂ binding. Myoglobin = monomer, O₂ storage.',
+    'Cytochromes shuttle electrons; Fe cycles between Fe(II) and Fe(III).',
+    'Deficiency → anaemia (lethargy, pallor, dizziness, shortness of breath).',
+    'Oral salts: FeSO₄, Fe(II) fumarate, Fe(II) succinate, Fe(II) gluconate — dose 100–200 mg Fe²⁺/day.',
+    'IV iron (dextran/sucrose) only if oral therapy fails — anaphylaxis risk.',
+    '<b>Bleomycin</b> uses Fe²⁺ to fragment DNA (site-selective, 5′-GC/5′-GT); dose-limiting toxicity: pulmonary fibrosis.',
+  ]},
+  {cls:'cu', title:'Copper (Cu)', items:[
+    'Group 11 "coinage metal", along with silver and gold.',
+    '~50% of dietary copper absorbed, sent to the liver, carried mainly by <b>ceruloplasmin</b>.',
+    'Shifts between cuprous (Cu⁺) and cupric (Cu²⁺); mostly found as Cu²⁺.',
+    'Cuproenzymes: lysyl oxidase (collagen/elastin cross-linking), ceruloplasmin ferroxidase (Fe²⁺→Fe³⁺), cytochrome c oxidase & superoxide dismutase (anti-ROS).',
+    '<b>Wilson disease</b>: autosomal recessive, ATP7B mutation → copper accumulates in liver & brain.',
+    'Signs: liver cirrhosis, neuropsychiatric symptoms, <b>Kayser–Fleischer ring</b>. Also called hepatolenticular degeneration.',
+    'Treatment: chelation (BAL 1951 → D-penicillamine 1956), zinc supplements, liver transplant if severe.',
+    'Excess copper is toxic; deficiency causes <b>Menkes disease</b>.',
+    '<b>GHK–Cu(II)</b> tripeptide complex: anti-inflammatory + activates wound-healing tissue remodeling; chemically unstable outside the body.',
+    'Cancer link: raised ceruloplasmin/copper seen in tumors; copper-deprivation strategies have not proven clinically encouraging.',
+  ]},
+  {cls:'ag', title:'Silver (Ag)', items:[
+    'No known biological role in humans — Ag⁺ is undetectable physiologically.',
+    'Historic uses: ornamental, monetary, medicinal.',
+    '1% AgNO₃ eye drops prevent neonatal conjunctivitis from <i>Neisseria gonorrhoeae</i>.',
+    'Used in water purification (airlines, NASA) — safe, tasteless, odorless.',
+    'Antibacterial mechanism: Ag⁺ irreversibly damages essential enzymes, especially membrane-associated ones.',
+    'Overexposure → <b>argyria</b> (irreversible skin discoloration); resistant organisms are emerging.',
+    'AgNO₃ treats warts (HPV) by chemical cauterization; corrosive, stains skin/fabric (black AgCl).',
+    '<b>Silver sulfadiazine</b>: standard topical therapy for 2nd/3rd-degree burn infections.',
+    'Unlike AgNO₃, sulfadiazine is nearly insoluble in water — avoids complications like hypochloremia.',
+    'Broad-spectrum: Gram-positive, Gram-negative bacteria, and yeasts.',
+  ]},
+];
+document.getElementById('ovGrid').innerHTML = ovData.map(c=>`
+  <div class="ov-card ${c.cls}">
+    <div class="head"><span class="tag ${c.cls}">${c.cls.toUpperCase()}</span><h3>${c.title}</h3></div>
+    <ul>${c.items.map(i=>`<li>${i}</li>`).join('')}</ul>
+  </div>
+`).join('');
+
+/* ============================================================
+   2. DIAGRAMS
+============================================================ */
+
+/* --- Iron journey flow --- */
+const ironStages = [
+  {id:'diet', label:'Dietary Iron', sub:'~15 mg/day', text:'A normal diet contains around 15 mg of iron per day, but only about 10% of it is actually absorbed. Bioavailability depends on the food source — meat, poultry, and fish supply easy-to-absorb iron.'},
+  {id:'abs', label:'Absorption', sub:'Duodenum & jejunum', text:'Iron is absorbed predominantly in the duodenum and upper jejunum. Further down, intestinal bicarbonate raises the pH and iron becomes insoluble — no longer absorbable.'},
+  {id:'trans', label:'Transferrin', sub:'Fe³⁺, ~40 mg/day', text:'Free iron is highly toxic, so the body keeps it protein-bound. Transferrin carries Fe³⁺ from the gut to storage sites or directly into new hemoglobin, moving roughly 40 mg of iron per day.'},
+  {id:'store', label:'Storage', sub:'Ferritin — liver, spleen', text:'Excess Fe³⁺ is stored mainly in the liver and spleen as ferritin, a water-soluble metalloprotein built to hold iron safely.'},
+  {id:'use', label:'Functional Use', sub:'Hb, Mb, cytochromes', text:'About 65% of body iron is "functional" — built into hemoglobin (oxygen transport), myoglobin (oxygen storage in muscle), and cytochromes (electron transport).'},
+  {id:'loss', label:'Loss', sub:'≤ 3 mg/day', text:'Iron is excreted only in small amounts unless there is major blood loss. Typical losses — superficial GI bleeding or menstruation — rarely exceed 3 mg per day, and the body tightly regulates uptake to replace only what is lost.'},
+];
+function buildFlow(containerId, stages, detailId, onClickExtra){
+  const el = document.getElementById(containerId);
+  el.innerHTML = stages.map((s,i)=>`
+    <button class="flow-node" data-i="${i}"><b>${s.label}</b><small>${s.sub}</small></button>
+    ${i<stages.length-1 ? '<div class="flow-arrow">→</div>' : ''}
+  `).join('');
+  el.querySelectorAll('.flow-node').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      el.querySelectorAll('.flow-node').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const s = stages[btn.dataset.i];
+      document.getElementById(detailId).textContent = s.text;
+      if(onClickExtra) onClickExtra(s);
+    });
+  });
+}
+buildFlow('ironFlow', ironStages, 'ironFlowDetail');
+
+/* --- Transferrin ring --- */
+const transferrinLigands = [
+  {label:'Imidazole N (His)', text:'A nitrogen atom from the imidazole ring of a histidine residue coordinates the Fe³⁺ center.'},
+  {label:'Phenolate O (Tyr)', text:'A deprotonated tyrosine phenol group donates an oxygen to the iron — transferrin uses two of these.'},
+  {label:'Phenolate O (Tyr)', text:'The second deprotonated tyrosine phenol group, completing the pair that helps clamp Fe³⁺ in place.'},
+  {label:'Carboxylate (Asp)', text:'An aspartate carboxylate group adds another oxygen donor to the binding pocket.'},
+  {label:'Carbonate (CO₃²⁻)', text:'A carbonato ligand is essential to the binding mechanism — without it, transferrin cannot properly clamp down on Fe³⁺.'},
+];
+const ringEl = document.getElementById('transferrinRing');
+ringEl.innerHTML = transferrinLigands.map((l,i)=>`<div class="pill" data-i="${i}">${l.label}</div>`).join('');
+ringEl.querySelectorAll('.pill').forEach(p=>{
+  p.addEventListener('click', ()=>{
+    ringEl.querySelectorAll('.pill').forEach(x=>x.classList.remove('active'));
+    p.classList.add('active');
+    document.getElementById('transferrinDetail').textContent = transferrinLigands[p.dataset.i].text + ' Together, all five contacts make Fe³⁺ hexa-coordinate.';
+  });
+});
+
+/* --- Heme protein table --- */
+const hemeRows = [
+  {name:'Hemoglobin', struct:'Tetramer — 4 chains', fn:'Oxygen transport in red blood cells', detail:'Each of the four chains carries one heme group. The four hemes act cooperatively — release or uptake of the first O₂ molecule triggers release/uptake of the remaining three.'},
+  {name:'Myoglobin', struct:'Monomer — 1 chain', fn:'Oxygen storage & use in muscle', detail:'The iron is coordinated by the four porphyrin nitrogens plus a fifth nitrogen from a histidine residue — a single protoporphyrin unit per chain.'},
+  {name:'Cytochromes', struct:'Heme group, mitochondrial', fn:'Electron transport (and photosynthesis)', detail:'The heme iron shuttles reversibly between Fe(III) and Fe(II). Cytochrome c passes an electron to cytochrome c oxidase; reducing O₂ to two water molecules needs 4 electrons and 4 cytochrome c molecules.'},
+];
+document.getElementById('hemeTable').innerHTML = `
+  <thead><tr><th>Protein</th><th>Structure</th><th>Function</th></tr></thead>
+  <tbody>
+  ${hemeRows.map((r,i)=>`
+    <tr class="row-head" data-i="${i}"><td>${r.name}</td><td>${r.struct}</td><td>${r.fn}</td></tr>
+    <tr class="detail-row" id="hemeDetail${i}"><td colspan="3">${r.detail}</td></tr>
+  `).join('')}
+  </tbody>`;
+document.querySelectorAll('#hemeTable .row-head').forEach(row=>{
+  row.addEventListener('click', ()=>{
+    document.getElementById('hemeDetail'+row.dataset.i).classList.toggle('open');
+  });
+});
+
+/* --- Bleomycin domains --- */
+const bleoDomainsData = [
+  {label:'Metal-Binding Domain (N-terminus)', text:'Contains histidine and deprotonated amide groups that coordinate metals. Bleomycin can bind Cu²⁺, Co²⁺, Zn²⁺, or Fe²⁺ — but Fe²⁺ has the highest affinity. Metal chelation is essential for activation and DNA cleavage.'},
+  {label:'Carbohydrate Moiety', text:'Not directly responsible for cytotoxicity. Instead, it plays a role in cellular uptake and modulates the drug’s overall activity.'},
+  {label:'DNA-Binding Domain (C-terminus)', text:'Contains two thiazole rings and a positively charged sulfonium group. These interact with the negatively charged DNA phosphate backbone, enabling intercalation. Bleomycin preferentially binds at 5′-GC and 5′-GT sequences.'},
+];
+const bdEl = document.getElementById('bleoDomains');
+bdEl.innerHTML = bleoDomainsData.map((d,i)=>`<button class="domain-box" data-i="${i}"><b>${d.label}</b>Tap to read</button>`).join('');
+bdEl.querySelectorAll('.domain-box').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    bdEl.querySelectorAll('.domain-box').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    document.getElementById('bleoDomainDetail').textContent = bleoDomainsData[b.dataset.i].text;
+  });
+});
+
+/* --- Bleomycin steps --- */
+const bleoSteps = [
+  {label:'Activated Complex', text:'Fe²⁺–bleomycin reacts with O₂ to form HOO–Fe(III)BLM, the "activated bleomycin complex."'},
+  {label:'Reactive Radical', text:'Homolytic cleavage of the O–O bond produces a highly reactive oxygen radical.'},
+  {label:'DNA Damage', text:'The radical abstracts a C4′–H atom from the deoxyribose sugar, causing strand scission and fragmentation of the DNA backbone — site-selective at 5′-GC or 5′-GT.'},
+];
+const stepEl = document.getElementById('bleoSteps');
+stepEl.innerHTML = bleoSteps.map((s,i)=>`<button class="step-btn" data-i="${i}"><span class="snum">Step ${i+1}</span>${s.label}</button>`).join('');
+function setBleoStep(i){
+  stepEl.querySelectorAll('.step-btn').forEach(b=>b.classList.remove('active'));
+  stepEl.querySelector(`[data-i="${i}"]`).classList.add('active');
+  document.getElementById('bleoStepDetail').textContent = bleoSteps[i].text;
+}
+stepEl.querySelectorAll('.step-btn').forEach(b=>b.addEventListener('click', ()=>setBleoStep(b.dataset.i)));
+setBleoStep(0);
+
+/* --- Copper flow + Wilson toggle --- */
+const copperStagesNormal = [
+  {id:'diet', label:'Dietary Copper', sub:'~50% absorbed', text:'About 50% of dietary copper is absorbed in the GI tract and transported to the liver.'},
+  {id:'liver', label:'Liver', sub:'Distribution hub', text:'From the liver, copper is distributed to peripheral tissues — mainly bound to ceruloplasmin, with a smaller amount bound to albumin.'},
+  {id:'tissue', label:'Tissues', sub:'Cuproenzymes at work', text:'Copper acts as a cofactor for lysyl oxidase, ceruloplasmin ferroxidase, cytochrome c oxidase, superoxide dismutase, and neurotransmitter-synthesis enzymes.'},
+  {id:'excrete', label:'Excretion', sub:'Bile → gut → faeces', text:'Excess copper is excreted through bile into the gut and then the faeces — the normal safety valve that prevents overload.'},
+];
+const copperStagesWilson = [
+  {id:'diet', label:'Dietary Copper', sub:'~50% absorbed', text:'Absorption itself is unaffected — the defect lies downstream, at excretion.'},
+  {id:'liver', label:'Liver', sub:'Copper starts to build up', text:'ATP7B is defective, so the copper-transporting ATPase that normally excretes copper through the liver can’t do its job.'},
+  {id:'tissue', label:'Brain & Liver', sub:'Progressive accumulation', text:'Copper accumulates progressively, primarily in the liver and brain — especially the lenticular nucleus — causing cirrhosis and neurological/psychiatric symptoms.'},
+  {id:'excrete', label:'Excretion Blocked', sub:'Kayser–Fleischer ring', text:'Biliary excretion fails. A hallmark sign appears: the Kayser–Fleischer ring, a brownish ring around the iris from corneal copper deposition. Also called hepatolenticular degeneration.'},
+];
+let wilsonOn = false;
+function renderCopperFlow(){
+  buildFlow('copperFlow', wilsonOn ? copperStagesWilson : copperStagesNormal, 'copperFlowDetail');
+}
+renderCopperFlow();
+const wSwitch = document.getElementById('wilsonSwitch');
+wSwitch.addEventListener('click', ()=>{
+  wilsonOn = !wilsonOn;
+  wSwitch.classList.toggle('on', wilsonOn);
+  document.getElementById('wilsonState').textContent = wilsonOn ? 'Defective — Wilson disease' : 'Normal';
+  renderCopperFlow();
+});
+
+/* --- Element comparison matrix --- */
+const matrixRows = [
+  {prop:'Oxidation states used', fe:'Fe²⁺ / Fe³⁺', cu:'Cu⁺ / Cu²⁺', ag:'Ag⁺'},
+  {prop:'Transport / storage protein', fe:'Transferrin / Ferritin', cu:'Ceruloplasmin / Albumin', ag:'— (no biological role)'},
+  {prop:'Deficiency or overload disorder', fe:'Iron-deficiency anaemia', cu:'Menkes disease (deficiency) / Wilson disease (overload)', ag:'—'},
+  {prop:'Toxicity of overexposure', fe:'Free Fe is highly toxic', cu:'Copper overload is toxic', ag:'Argyria (irreversible skin discoloration)'},
+  {prop:'Key therapeutic agent', fe:'FeSO₄, Fe(II) fumarate/succinate/gluconate', cu:'D-penicillamine (chelator)', ag:'Silver sulfadiazine, AgNO₃'},
+  {prop:'Mechanism of action / use', fe:'O₂ transport & storage; bleomycin DNA cleavage', cu:'Cuproenzyme cofactor; GHK–Cu wound healing', ag:'Damages bacterial membrane-linked enzymes'},
+];
+function renderMatrix(){
+  const active = Array.from(document.querySelectorAll('.mtile.active')).map(t=>t.dataset.el);
+  const cols = ['fe','cu','ag'].filter(c=>active.includes(c));
+  const head = ['<th>Property</th>'].concat(cols.map(c=>`<th class="mcol-${c}">${c==='fe'?'Iron':c==='cu'?'Copper':'Silver'}</th>`)).join('');
+  const body = matrixRows.map(r=>{
+    const cells = cols.map(c=>`<td class="mcol-${c}">${r[c]}</td>`).join('');
+    return `<tr><td>${r.prop}</td>${cells}</tr>`;
+  }).join('');
+  document.getElementById('matrixTable').innerHTML = `<thead><tr>${head}</tr></thead><tbody>${body}</tbody>`;
+}
+document.querySelectorAll('.mtile').forEach(t=>{
+  t.addEventListener('click', ()=>{
+    const currentlyActive = document.querySelectorAll('.mtile.active').length;
+    if(t.classList.contains('active') && currentlyActive===1) return; // keep at least one column
+    t.classList.toggle('active');
+    renderMatrix();
+  });
+});
+renderMatrix();
+
+/* ============================================================
+   3. MINI MAP
+============================================================ */
+const mmData = [
+  {group:'Iron', items:[
+    {t:'Iron — Overview', body:'Member of group 8, atomic number 26. Biologically, iron is an essential trace element required by nearly all living organisms. Iron-dependent enzymes, often containing heme groups, are crucial for oxidation-reduction reactions and gas transport. Iron-deficiency anaemia was identified in the 1930s and remains the most common nutritional deficiency worldwide.'},
+    {t:'Iron — Vital Functions', body:'A 70 kg adult body contains around 4200 mg of iron ions. About 65% is functional iron — hemoglobin or myoglobin. Hemoglobin is the oxygen-transport metalloprotein in red blood cells; myoglobin facilitates oxygen use and storage in muscles; cytochromes transport electrons.'},
+    {t:'Iron — Absorption, Transport, Storage', body:'Iron is absorbed predominantly in the duodenum and upper jejunum. Beyond this point, intestinal bicarbonate raises the pH and iron becomes insoluble. Free iron is highly toxic, so the body keeps it protein-bound. Iron ions are transported by transferrin to storage or incorporated into hemoglobin. Fe³⁺ is stored mainly in the liver and spleen as ferritin, a water-soluble metalloprotein.'},
+    {t:'Transferrin', body:'A group of proteins whose primary role is to transport Fe³⁺. Consists of a single polypeptide chain that independently binds up to two Fe³⁺ ions. Fe³⁺ is bound in a hexa-coordinate arrangement: the N atom from an imidazole residue, two deprotonated phenol groups, a carboxylate, and a carbonato ligand ((CO₃)²⁻, essential for the binding mechanism). Serum transferrin includes ovotransferrin (egg white) and lactoferrin (milk), and can transport ~40 mg of iron per day in humans.'},
+    {t:'Hemoglobin & Myoglobin', body:'Both are heme-iron proteins, characterized by a heme group (a protoporphyrin group) coordinated to a central Fe(II) ion. Hemoglobin’s main function is transporting oxygen to tissue in need; myoglobin is the oxygen storage protein present in tissue.'},
+    {t:'Myoglobin — Detail', body:'Consists of a monomeric protein chain containing one protoporphyrin group as the functional unit. Within myoglobin, the iron center is coordinated by the four nitrogen groups of the porphyrin, plus a fifth nitrogen center from a histidine group.'},
+    {t:'Hemoglobin — Detail', body:'An oxygen-transport protein in red blood cells. It’s a tetramer, and each of the four chains contains a heme group. The four heme groups do not operate independently — release and binding of oxygen is a cooperative process, meaning loss or uptake of the first oxygen molecule triggers release of the remaining three.'},
+    {t:'Cytochromes', body:'Part of the mitochondrial electron-transfer chain, also involved in photosynthesis. All are involved in reduction–oxidation processes. They contain a heme group with an iron center that can change reversibly from Fe(III) to Fe(II) and back. Cytochrome c accepts an electron from cytochrome c1 and transfers it to cytochrome c oxidase, subsequently used to reduce oxygen to two molecules of water (needing 4 electrons and 4 cytochrome c molecules).'},
+    {t:'Iron Uptake & Metabolism', body:'A normal diet contains around 15 mg of iron per day, and only around 10% is absorbed. The body requires more iron during pregnancy or growth spurts and adjusts its absorption rate accordingly. Absorption depends on bioavailability, the amount of iron in the food, and the body’s need for iron. Meat, poultry, and fish are rich in easy-to-absorb iron; polyphenols (vegetables) or tannins (tea) can form chelates that reduce absorption. Iron is excreted only in small amounts without major blood loss — typically no more than 3 mg/day, through superficial GI bleeding or menstruation.'},
+    {t:'Iron — Medicinal Use', body:'Lack of functional iron leads to anaemia, characterized by lethargy, weakness, pale skin, dizziness, and shortness of breath. Iron is usually administered orally as Fe²⁺ or Fe³⁺ salts. Fe²⁺ compounds are more soluble at physiological pH; the advantage of Fe³⁺ salts is that they resist oxidation in aqueous solution. Common preparations include FeCl₃, FeSO₄, Fe(II) fumarate, Fe(II) succinate, and Fe(II) gluconate. Oral treatment can cause GI irritation. The typical oral dose of Fe²⁺ is 100–200 mg/day; for FeSO₄, that’s 65 mg Fe²⁺ given three times daily, with hemoglobin expected to rise 100–200 mg/100 mL per day. Treatment continues for 3 months after the normal range is reached.'},
+    {t:'Iron Dextran & Iron Sucrose', body:'These salts can be given by IV infusion or injection. This route is chosen only when oral therapy fails, because of the risk of anaphylactic reactions. Patients with chronic renal failure on hemodialysis often require IV iron supplementation.'},
+  ]},
+  {group:'Bleomycin', items:[
+    {t:'Bleomycin — Overview', body:'A family of water-soluble glycopeptide antibiotics isolated from Streptomyces verticillus. A clinically important anticancer drug known for fragmenting DNA, effective against testicular cancer, Hodgkin’s lymphoma, non-Hodgkin’s lymphoma, and head and neck cancers. The clinically active forms are BLM A₂ and BLM B₂.'},
+    {t:'Bleomycin — Structural Domains', body:'DNA-binding domain (C-terminus): two thiazole rings and a positively charged sulfonium group interact with the negatively charged DNA phosphate backbone, enabling intercalation; binds preferentially at 5′-GC and 5′-GT sequences. Metal-binding domain (N-terminus): histidine and deprotonated amide groups coordinate metals — Cu²⁺, Co²⁺, Zn²⁺, or Fe²⁺, with the highest affinity for Fe²⁺; chelation is essential for activation. Carbohydrate moiety: not directly cytotoxic, but aids cellular uptake and modulates overall activity.'},
+    {t:'Bleomycin — Mode of Action', body:'Fe²⁺–BLM reacts with O₂ to form the "activated BLM complex," HOO–Fe(III)BLM. Homolytic cleavage of the O–O bond generates a highly reactive oxygen radical, which abstracts a C4′-H atom from the deoxyribose sugar — causing strand scission and fragmentation of the DNA backbone. Cleavage is site-selective (5′-GC or 5′-GT), and DNA cleavage is believed to occur concertedly with O–O bond homolysis.'},
+    {t:'Bleomycin — Clinical Use & Side Effects', body:'Usually given as a mixture of BLM A₂ (~60–70%) and BLM B₂ (~20–30%); the commercial product Blenoxane® contains ~70% BLM A₂. Given IV or IM. Advantage: minimal bone marrow suppression. Common toxicity: dermatological reactions, including hyperpigmentation. Major dose-limiting toxicity: pulmonary fibrosis, strongly dose-related — requiring regular chest X-rays and pulmonary function tests.'},
+  ]},
+  {group:'Copper', items:[
+    {t:'Copper — Overview', body:'An essential trace element in the human body. Historically used to treat chronic ulcers, headaches, ear infections, and rheumatoid arthritis. Excessive copper is toxic; low amounts also cause health problems, such as Menkes disease. Copper belongs to group 11, the coinage metals, alongside silver and gold.'},
+    {t:'Copper — Transport & Cuproenzymes', body:'About 50% of dietary copper is absorbed in the GI tract and transported to the liver, then distributed to peripheral tissues — mainly bound to ceruloplasmin, with a smaller amount bound to albumin. Excess copper is excreted through bile into the gut and then the faeces. Most copper ions exist as Cu²⁺, though the oxidation state shifts between cuprous (Cu⁺) and cupric (Cu²⁺). Key cuproenzymes: lysyl oxidase (collagen/elastin cross-linking), ceruloplasmin ferroxidase I & II (oxidize Fe²⁺ to Fe³⁺, supporting iron transport and red-cell production), cytochrome c oxidase and superoxide dismutase (reduce reactive oxygen species), and enzymes in neurotransmitter synthesis such as dopamine-β-monooxygenase and monoamine oxidase.'},
+    {t:'Wilson Disease', body:'An autosomal recessive genetic disorder caused by mutations in the ATP7B gene, which encodes a copper-transporting ATPase normally responsible for excreting copper through the liver. When defective, copper cannot be properly eliminated, leading to progressive accumulation in tissues — primarily the liver and brain — causing liver cirrhosis and brain tissue damage.'},
+    {t:'Wilson Disease — Clinical Signs', body:'Clinically manifests as liver cirrhosis and neurological or psychiatric symptoms from copper deposition, especially in the lenticular nucleus. A characteristic sign is the Kayser–Fleischer ring, a brownish ring around the iris from corneal copper accumulation. Wilson disease is therefore also called hepatolenticular degeneration.'},
+    {t:'Wilson Disease — Treatment', body:'Before effective therapy, Wilson disease was often fatal. Current treatment focuses on reducing copper levels, primarily through chelation therapy. The first chelator used was BAL (British anti-lewisite) in 1951, later replaced by orally active D-penicillamine in 1956. Zinc supplements reduce intestinal copper absorption, though onset is slow — chelation should continue 2–3 weeks after starting zinc. Liver transplantation is curative for severe cases.'},
+    {t:'Copper & Wound Healing (GHK–Cu)', body:'Glycyl-L-histidyl-L-lysine (GHK) is a tripeptide with high binding affinity for Cu²⁺ and a complex role in wound healing. GHK–Cu(II) has two main functions: an anti-inflammatory role protecting tissue from oxidative damage after injury, and an activator role for wound healing itself, activating tissue remodeling. Its structure closely resembles common anti-ulcer drugs like cimetidine and nizatidine.'},
+    {t:'GHK–Cu(II) — Mechanism in Wound Healing', body:'Early wound responses (coagulation, neutrophil migration) are followed by GHK accumulation at the injury site. Mast cells secrete GHK, which rapidly binds Cu²⁺ to form the active GHK–Cu(II) complex. The complex reduces inflammation, promotes macrophage-driven repair, inhibits fibroblast production of TGF-β1 (reducing scar formation), and encourages growth of blood vessels, neurons, and elastin.'},
+    {t:'Pharmaceutical Interest & Limitations', body:'Due to its broad regenerative properties, GHK–Cu(II) attracted interest for commercial wound-healing products. However, GHK is chemically unstable and degrades rapidly outside the body. In the human body this instability isn’t a problem, since GHK is continuously regenerated — but it limits development of stable therapeutic formulations.'},
+    {t:'Copper & Cancer', body:'Cancer progression has been linked to increased ceruloplasmin and copper levels in a variety of tissues. Copper deficiency has been considered as an anticancer strategy, but clinical studies have not been encouraging. The exact role of copper in cancer is not fully understood, though it may involve oxidation processes, ROS production, and angiogenesis — copper is believed to stimulate proliferation of endothelial cells.'},
+  ]},
+  {group:'Silver', items:[
+    {t:'Silver — Overview', body:'Silver has no known biological role in humans, with undetectable physiological Ag⁺ levels. Historically, it has been used since ancient times for ornamental, monetary, and medicinal purposes. Silver is one of the three nonradioactive group 11 "coinage metals," alongside copper and gold. 1% silver nitrate is used as eye drops to prevent neonatal conjunctivitis caused by Neisseria gonorrhoeae. It’s also used in water purification for airlines and NASA, providing safe, tasteless, odorless, colorless drinking water. Prolonged or excessive exposure can cause irreversible skin discoloration (argyria), and rising silver-resistant microorganisms limit its therapeutic use.'},
+    {t:'Antibacterial Activity of Silver', body:'Silver ions (Ag⁺) have long been recognized for broad-spectrum antibacterial properties, largely because they are significantly more toxic to bacteria than to human cells. Silver is widely used in burn wound prophylaxis and water disinfection. Silver ions likely disrupt bacterial metabolism and inactivate pathogens by irreversibly damaging essential enzymes, especially those associated with cell membranes.'},
+    {t:'AgNO₃ as Warts Treatment', body:'Silver nitrate is a water-soluble topical treatment for warts, second to salicylic acid in popularity. Applied via chemical cauterization, it destroys wart tissue caused by human papillomavirus (HPV), commonly found on hands, feet, and anogenital regions. However, AgNO₃ is corrosive and can permanently stain skin and fabrics due to the formation of black AgCl precipitates.'},
+    {t:'Silver(I) Sulfadiazine', body:'Widely used for prophylaxis and treatment of burn wound infections, particularly second- and third-degree burns. Unlike silver nitrate, it is highly insoluble in water, which prevents complications like hypochloremia. The compound combines silver ions and the sulfonamide antibiotic sulfadiazine, providing broad-spectrum antimicrobial activity against Gram-negative and Gram-positive bacteria, as well as yeasts.'},
+    {t:'Silver Sulfadiazine — Clinical Use', body:'The cream is applied continuously throughout the healing process, or until a skin graft is placed. Its effect comes from inhibiting microorganism growth on compromised skin, preventing infection and supporting healing. Because sulfadiazine can be absorbed from large treated areas, systemic plasma levels may reach therapeutic concentrations, potentially causing adverse effects — so caution is required on extensive burns.'},
+  ]},
+];
+const mmListEl = document.getElementById('mmList');
+let mmHtml = '';
+mmData.forEach((g,gi)=>{
+  mmHtml += `<div class="mm-group-label">${g.group}</div>`;
+  g.items.forEach((it,ii)=>{
+    mmHtml += `<button class="mm-item" data-g="${gi}" data-i="${ii}">${it.t}</button>`;
+  });
+});
+mmListEl.innerHTML = mmHtml;
+mmListEl.querySelectorAll('.mm-item').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    mmListEl.querySelectorAll('.mm-item').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const item = mmData[btn.dataset.g].items[btn.dataset.i];
+    document.getElementById('mmPanel').innerHTML = `<h4>${item.t}</h4><p>${item.body}</p>`;
+  });
+});
+
+/* ============================================================
+   4. FLASH CARDS
+============================================================ */
+const flashcards = [
+  {tag:'fe', front:'What is iron’s atomic number and periodic group?', back:'Atomic number 26, group 8 of the periodic table.'},
+  {tag:'fe', front:'How much iron does a 70 kg adult body contain?', back:'About 4200 mg of iron ions.'},
+  {tag:'fe', front:'What forms make up the 65% of "functional iron" in the body?', back:'Hemoglobin and myoglobin.'},
+  {tag:'fe', front:'What is the main function of hemoglobin?', back:'Transport of oxygen to tissues in need.'},
+  {tag:'fe', front:'What is the main function of myoglobin?', back:'Storage and use of oxygen within muscle tissue.'},
+  {tag:'fe', front:'What is the main function of cytochromes?', back:'Electron transport, mainly in the mitochondrial electron-transfer chain (also photosynthesis).'},
+  {tag:'fe', front:'Where is dietary iron mainly absorbed?', back:'The duodenum and upper jejunum.'},
+  {tag:'fe', front:'Why does iron become non-absorbable further down the intestine?', back:'Intestinal bicarbonate raises the pH, making iron insoluble.'},
+  {tag:'fe', front:'Why must the body keep iron protein-bound?', back:'Because free iron is highly toxic.'},
+  {tag:'fe', front:'What protein carries Fe³⁺ in blood, and how much per day?', back:'Transferrin — about 40 mg of iron per day.'},
+  {tag:'fe', front:'How many Fe³⁺ ions can one transferrin chain bind?', back:'A maximum of two, independently.'},
+  {tag:'fe', front:'What groups coordinate Fe³⁺ in transferrin?', back:'An imidazole nitrogen (His), two deprotonated phenol groups (Tyr), a carboxylate (Asp), and a carbonato ligand.'},
+  {tag:'fe', front:'Name two natural forms of serum transferrin.', back:'Ovotransferrin (egg white) and lactoferrin (milk).'},
+  {tag:'fe', front:'Where and how is Fe³⁺ mainly stored?', back:'In the liver and spleen, as ferritin.'},
+  {tag:'fe', front:'What is heme coordinated to in hemoglobin/myoglobin?', back:'A central Fe(II) ion, within a protoporphyrin ring.'},
+  {tag:'fe', front:'How many heme groups does hemoglobin have, and how do they behave?', back:'Four (it’s a tetramer); they act cooperatively, not independently.'},
+  {tag:'fe', front:'What coordinates the 5th position of iron in myoglobin?', back:'A nitrogen from a histidine residue.'},
+  {tag:'fe', front:'How many electrons/cytochrome c molecules reduce O₂ to two water molecules?', back:'Four electrons and four cytochrome c molecules.'},
+  {tag:'fe', front:'A normal diet supplies how much iron, and what fraction is absorbed?', back:'About 15 mg/day; only about 10% is absorbed.'},
+  {tag:'fe', front:'Name two dietary compounds that reduce iron absorption.', back:'Polyphenols (vegetables) and tannins (tea) — they form chelates with iron.'},
+  {tag:'fe', front:'About how much iron is lost per day normally?', back:'No more than about 3 mg/day.'},
+  {tag:'fe', front:'What are the classic symptoms of iron-deficiency anaemia?', back:'Lethargy, weakness, pale skin, dizziness, and shortness of breath.'},
+  {tag:'fe', front:'Why might Fe³⁺ salts be preferred medicinally over Fe²⁺?', back:'They resist oxidation in aqueous solution (Fe²⁺ is more soluble at physiological pH, though).'},
+  {tag:'fe', front:'Name three common oral iron preparations.', back:'FeSO₄, Fe(II) fumarate, Fe(II) succinate (or Fe(II) gluconate, FeCl₃).'},
+  {tag:'fe', front:'Typical oral dose of Fe²⁺ for iron-deficiency anaemia?', back:'100–200 mg/day.'},
+  {tag:'fe', front:'When is IV iron (dextran/sucrose) used?', back:'Only when oral therapy fails, due to the risk of anaphylactic reactions.'},
+  {tag:'bleo', front:'What organism is bleomycin isolated from?', back:'Streptomyces verticillus.'},
+  {tag:'bleo', front:'What is bleomycin’s basic mechanism of cytotoxicity?', back:'It fragments DNA via a metal-activated (Fe²⁺) oxygen-radical mechanism.'},
+  {tag:'bleo', front:'Which metal ion does bleomycin bind with highest affinity?', back:'Fe²⁺.'},
+  {tag:'bleo', front:'Which DNA sequences does bleomycin preferentially cleave?', back:'5′-GC and 5′-GT.'},
+  {tag:'bleo', front:'What is bleomycin’s major dose-limiting toxicity?', back:'Pulmonary fibrosis.'},
+  {tag:'bleo', front:'What advantage does bleomycin have over many anticancer drugs?', back:'Minimal bone marrow suppression.'},
+  {tag:'cu', front:'What fraction of dietary copper is absorbed, and sent where first?', back:'About 50%; transported to the liver.'},
+  {tag:'cu', front:'What is the main copper-carrying protein in blood?', back:'Ceruloplasmin (a copper-binding glycoprotein).'},
+  {tag:'cu', front:'Which gene is defective in Wilson disease, and what does it encode?', back:'ATP7B — a copper-transporting ATPase that excretes copper via the liver.'},
+  {tag:'cu', front:'What eye sign is characteristic of Wilson disease?', back:'The Kayser–Fleischer ring.'},
+  {tag:'cu', front:'First chelator historically used for Wilson disease, and when?', back:'BAL (British anti-lewisite), 1951.'},
+  {tag:'cu', front:'What orally active chelator replaced BAL in 1956?', back:'D-penicillamine.'},
+  {tag:'cu', front:'What tripeptide binds Cu²⁺ to support wound healing?', back:'GHK (Glycyl-L-histidyl-L-lysine).'},
+  {tag:'cu', front:'What limits GHK–Cu(II) from becoming a stable drug formulation?', back:'GHK is chemically unstable and degrades rapidly outside the body.'},
+  {tag:'cu', front:'Copper deficiency is linked to which genetic disease?', back:'Menkes disease.'},
+  {tag:'ag', front:'Does silver have a known biological role in humans?', back:'No — physiological Ag⁺ levels are undetectable.'},
+  {tag:'ag', front:'What is 1% silver nitrate used for in newborns?', back:'Eye drops to prevent neonatal conjunctivitis from Neisseria gonorrhoeae.'},
+  {tag:'ag', front:'What condition can prolonged silver exposure cause?', back:'Argyria — irreversible skin discoloration.'},
+  {tag:'ag', front:'How do silver ions kill bacteria?', back:'By irreversibly damaging essential enzymes, especially membrane-associated ones.'},
+  {tag:'ag', front:'Why is silver sulfadiazine preferred over silver nitrate for burns?', back:'It’s far less water-soluble, avoiding complications like hypochloremia, while still giving broad-spectrum activity.'},
+];
+let fcState = { list: flashcards.slice(), i:0, flipped:false, filter:'all' };
+function fcFiltered(){
+  return fcState.filter==='all' ? flashcards : flashcards.filter(c=>c.tag===fcState.filter);
+}
+function fcRender(){
+  const list = fcState.list;
+  const card = list[fcState.i];
+  document.getElementById('fcFrontText').textContent = card.front;
+  document.getElementById('fcBackText').textContent = card.back;
+  document.getElementById('fcProgress').textContent = `Card ${fcState.i+1} of ${list.length}  ·  ${card.tag.toUpperCase()}`;
+  document.getElementById('fcCard').classList.toggle('flipped', fcState.flipped);
+}
+document.getElementById('fcFilters').innerHTML = ['all','fe','cu','ag','bleo'].map(f=>`
+  <button class="fc-filter ${f==='all'?'active':''}" data-f="${f}">${f==='all'?'All':f.toUpperCase()}</button>
+`).join('');
+document.querySelectorAll('.fc-filter').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.fc-filter').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    fcState.filter = btn.dataset.f;
+    fcState.list = fcFiltered();
+    fcState.i = 0; fcState.flipped = false;
+    fcRender();
+  });
+});
+document.getElementById('fcCard').addEventListener('click', ()=>{
+  fcState.flipped = !fcState.flipped;
+  fcRender();
+});
+document.getElementById('fcFlip').addEventListener('click', (e)=>{
+  e.stopPropagation();
+  fcState.flipped = !fcState.flipped;
+  fcRender();
+});
+document.getElementById('fcNext').addEventListener('click', ()=>{
+  fcState.i = (fcState.i+1) % fcState.list.length;
+  fcState.flipped = false;
+  fcRender();
+});
+document.getElementById('fcPrev').addEventListener('click', ()=>{
+  fcState.i = (fcState.i-1+fcState.list.length) % fcState.list.length;
+  fcState.flipped = false;
+  fcRender();
+});
+document.getElementById('fcShuffle').addEventListener('click', ()=>{
+  fcState.list = shuffle(fcState.list);
+  fcState.i = 0; fcState.flipped = false;
+  fcRender();
+});
+fcRender();
+
+/* ============================================================
+   5. QUIZ BANK
+============================================================ */
+const quizBank = [
+  {tag:'fe', q:'Iron is a member of which group of the periodic table?', correct:'Group 8', wrong:['Group 6','Group 11','Group 2']},
+  {tag:'fe', q:"What is iron's atomic number?", correct:'26', wrong:['24','25','29']},
+  {tag:'fe', q:'Approximately how much iron does a 70 kg adult contain?', correct:'4200 mg', wrong:['420 mg','42 mg','42,000 mg']},
+  {tag:'fe', q:'What percentage of body iron is "functional iron"?', correct:'65%', wrong:['25%','45%','85%']},
+  {tag:'fe', q:'Which protein stores iron in the liver and spleen?', correct:'Ferritin', wrong:['Transferrin','Ceruloplasmin','Albumin']},
+  {tag:'fe', q:'Which oxidation state of iron does transferrin transport?', correct:'Fe³⁺', wrong:['Fe⁰','Fe¹⁺','Fe²⁺']},
+  {tag:'fe', q:'How much iron can transferrin transport per day in humans?', correct:'~40 mg', wrong:['~4 mg','~400 mg','~4000 mg']},
+  {tag:'fe', q:"Which amino acid's phenol group coordinates Fe³⁺ in transferrin?", correct:'Tyrosine', wrong:['Serine','Threonine','Cysteine']},
+  {tag:'fe', q:"Which ligand is essential to transferrin's binding mechanism?", correct:'Carbonate (CO₃²⁻)', wrong:['Chloride','Phosphate','Sulfate']},
+  {tag:'fe', q:'The transferrin found in egg white is called:', correct:'Ovotransferrin', wrong:['Lactoferrin','Apotransferrin','Ferroportin']},
+  {tag:'fe', q:'What causes iron to become non-absorbable beyond the duodenum/upper jejunum?', correct:'Bicarbonate raising the pH', wrong:['Low stomach acid','Bile salts','Pepsin activity']},
+  {tag:'fe', q:'Hemoglobin is structurally best described as a:', correct:'Tetramer', wrong:['Monomer','Dimer','Trimer']},
+  {tag:'fe', q:'What triggers release of the remaining three O₂ molecules from hemoglobin?', correct:'Binding/release of the first O₂ (cooperativity)', wrong:['A drop in pH alone','Binding of CO₂','A temperature change']},
+  {tag:'fe', q:'In myoglobin, what coordinates the fifth position of the iron center?', correct:'A histidine nitrogen', wrong:['A cysteine sulfur','A water molecule','A carbonate ion']},
+  {tag:'fe', q:'How many electrons and cytochrome c molecules reduce O₂ to two water molecules?', correct:'4 electrons, 4 cytochromes', wrong:['2 electrons, 2 cytochromes','4 electrons, 2 cytochromes','8 electrons, 4 cytochromes']},
+  {tag:'fe', q:'Roughly what fraction of dietary iron (15 mg/day) is absorbed?', correct:'10%', wrong:['1%','50%','90%']},
+  {tag:'fe', q:'Which dietary components reduce iron absorption by chelation?', correct:'Polyphenols and tannins', wrong:['Vitamin C and citrate','Fats and proteins','Starch and fiber']},
+  {tag:'fe', q:'About how much iron is lost per day under normal conditions?', correct:'Up to about 3 mg', wrong:['Up to about 30 mg','Up to about 300 mg','None at all']},
+  {tag:'fe', q:'Which iron salts are more soluble at physiological pH?', correct:'Fe²⁺ salts', wrong:['Fe³⁺ salts','Both equally','Neither is soluble']},
+  {tag:'fe', q:'Typical oral dose of Fe²⁺ for iron-deficiency anaemia?', correct:'100–200 mg/day', wrong:['10–20 mg/day','500–600 mg/day','1–2 g/day']},
+  {tag:'fe', q:'IV iron (dextran/sucrose) is mainly used when:', correct:'Oral therapy has failed', wrong:['The patient simply prefers injections','Iron levels are only mildly low','As first-line therapy']},
+  {tag:'bleo', q:'Bleomycin is isolated from which organism?', correct:'Streptomyces verticillus', wrong:['Penicillium notatum','Escherichia coli','Saccharomyces cerevisiae']},
+  {tag:'bleo', q:"Bleomycin's DNA-binding (C-terminal) domain contains:", correct:'Two thiazole rings and a sulfonium group', wrong:['Two imidazole rings','A carbonate ligand','A porphyrin ring']},
+  {tag:'bleo', q:'Bleomycin preferentially cleaves DNA at which sequences?', correct:"5′-GC and 5′-GT", wrong:["5′-AT and 5′-TA","5′-CC and 5′-GG",'Random sequences only']},
+  {tag:'bleo', q:'Which metal ion does bleomycin bind with the highest affinity?', correct:'Fe²⁺', wrong:['Cu²⁺','Zn²⁺','Co²⁺']},
+  {tag:'bleo', q:"What is bleomycin's major dose-limiting toxicity?", correct:'Pulmonary fibrosis', wrong:['Bone marrow suppression','Nephrotoxicity','Cardiotoxicity']},
+  {tag:'cu', q:'The three nonradioactive coinage metals (group 11) are:', correct:'Cu, Ag, Au', wrong:['Fe, Cu, Ag','Ag, Au, Pt','Zn, Cd, Hg']},
+  {tag:'cu', q:'What percentage of dietary copper is typically absorbed?', correct:'~50%', wrong:['~10%','~80%','~100%']},
+  {tag:'cu', q:'The main copper-binding transport glycoprotein in plasma is:', correct:'Ceruloplasmin', wrong:['Albumin','Transferrin','Ferritin']},
+  {tag:'cu', q:'Wilson disease results from mutations in which gene?', correct:'ATP7B', wrong:['ATP7A','HFE','SOD1']},
+  {tag:'cu', q:'Wilson disease mainly causes copper accumulation in which organs?', correct:'Liver and brain', wrong:['Kidneys and lungs','Heart and skin','Spleen and pancreas']},
+  {tag:'cu', q:'The brownish ring around the iris in Wilson disease is called:', correct:'Kayser–Fleischer ring', wrong:['Argyll Robertson pupil','Roth spot',"Bitot's spot"]},
+  {tag:'cu', q:'Wilson disease is also known as:', correct:'Hepatolenticular degeneration', wrong:['Hemochromatosis','Menkes disease','Argyria']},
+  {tag:'cu', q:'The first chelator historically used to treat Wilson disease was:', correct:'BAL (British anti-lewisite)', wrong:['D-penicillamine','EDTA','Deferoxamine']},
+  {tag:'cu', q:'Which orally active chelator later replaced BAL for Wilson disease?', correct:'D-penicillamine', wrong:['Zinc sulfate','Dimercaprol','Desferrioxamine']},
+  {tag:'cu', q:'GHK is a tripeptide with high binding affinity for which ion?', correct:'Cu²⁺', wrong:['Fe³⁺','Zn²⁺','Ag⁺']},
+  {tag:'cu', q:'GHK–Cu(II) helps wound healing partly by inhibiting fibroblast production of:', correct:'TGF-β1', wrong:['Collagen I','Elastin','IL-1']},
+  {tag:'cu', q:'Copper deficiency is associated with which genetic disease?', correct:'Menkes disease', wrong:['Wilson disease','Hemochromatosis','Hereditary spherocytosis']},
+  {tag:'cu', q:'Cuproenzymes such as lysyl oxidase are essential for:', correct:'Cross-linking collagen and elastin', wrong:['DNA replication','Oxygen transport','Electron transport only']},
+  {tag:'cu', q:'Which cuproenzyme oxidizes Fe²⁺ to Fe³⁺ to support iron transport?', correct:'Ceruloplasmin (ferroxidase)', wrong:['Superoxide dismutase','Cytochrome c oxidase','Lysyl oxidase']},
+  {tag:'ag', q:'Silver has what known biological role in the human body?', correct:'No known biological role', wrong:['Essential trace element','Cofactor for enzymes','Structural component of bone']},
+  {tag:'ag', q:'Silver nitrate eye drops prevent newborn conjunctivitis caused by:', correct:'Neisseria gonorrhoeae', wrong:['Chlamydia trachomatis','Staphylococcus aureus','Herpes simplex virus']},
+  {tag:'ag', q:'Irreversible skin discoloration from silver exposure is called:', correct:'Argyria', wrong:['Jaundice','Cyanosis','Vitiligo']},
+  {tag:'ag', q:'Silver ions exert antibacterial activity mainly by:', correct:'Damaging essential enzymes, especially membrane-associated ones', wrong:['Inhibiting cell wall synthesis','Blocking DNA replication directly','Competing with folate synthesis']},
+  {tag:'ag', q:'Compared with silver nitrate, silver sulfadiazine is:', correct:'Highly insoluble in water, avoiding complications like hypochloremia', wrong:['More water-soluble','Only used orally','Ineffective against Gram-positive bacteria']},
+  {tag:'ag', q:'Silver nitrate treats warts by:', correct:'Chemical cauterization of wart tissue', wrong:['Antiviral inhibition of HPV replication','Immune stimulation','Blocking keratin synthesis']},
+];
+
+let qzOrder = [];
+let qzIndex = 0;
+let qzScore = 0;
+let qzAnswered = false;
+
+function qzStart(){
+  qzOrder = shuffle(quizBank);
+  qzIndex = 0; qzScore = 0; qzAnswered = false;
+  qzRenderQuestion();
+}
+function qzUpdateHeader(){
+  document.getElementById('qzProgress').textContent = `Question ${Math.min(qzIndex+1, qzOrder.length)} of ${qzOrder.length}`;
+  document.getElementById('qzScore').textContent = `Score: ${qzScore} / ${qzIndex}`;
+  document.getElementById('qzBarFill').style.width = (qzIndex/qzOrder.length*100)+'%';
+}
+function qzRenderQuestion(){
+  qzAnswered = false;
+  qzUpdateHeader();
+  if(qzIndex >= qzOrder.length){
+    qzShowResult();
+    return;
+  }
+  const item = qzOrder[qzIndex];
+  const opts = shuffle([item.correct, ...item.wrong]);
+  const tagClass = item.tag;
+  document.getElementById('qzArea').innerHTML = `
+    <div class="qz-card">
+      <div class="qz-tag-row"><span class="tag ${tagClass}">${tagClass.toUpperCase()}</span></div>
+      <p class="qz-q">${item.q}</p>
+      <div id="qzOpts"></div>
+      <button class="qz-next" id="qzNextBtn">Next question →</button>
+    </div>
+  `;
+  const optsEl = document.getElementById('qzOpts');
+  opts.forEach(optText=>{
+    const b = document.createElement('button');
+    b.className = 'qz-opt';
+    b.textContent = optText;
+    b.addEventListener('click', ()=>{
+      if(qzAnswered) return;
+      qzAnswered = true;
+      const isCorrect = optText === item.correct;
+      if(isCorrect) qzScore++;
+      Array.from(optsEl.children).forEach(child=>{
+        child.disabled = true;
+        if(child.textContent === item.correct) child.classList.add('correct');
+        else if(child === b) child.classList.add('wrong');
+      });
+      document.getElementById('qzScore').textContent = `Score: ${qzScore} / ${qzIndex+1}`;
+      document.getElementById('qzNextBtn').classList.add('show');
+    });
+    optsEl.appendChild(b);
+  });
+  document.getElementById('qzNextBtn').addEventListener('click', ()=>{
+    if(!qzAnswered) return;
+    qzIndex++;
+    qzRenderQuestion();
+  });
+}
+function qzShowResult(){
+  document.getElementById('qzArea').innerHTML = `
+    <div class="qz-card qz-result">
+      <div class="big">${qzScore} / ${qzOrder.length}</div>
+      <p style="color:var(--text-dim); font-size:14px;">Questions and answer order reshuffle on restart.</p>
+      <button class="qz-restart" id="qzRestartBtn">Restart Quiz</button>
+    </div>
+  `;
+  document.getElementById('qzProgress').textContent = 'Complete';
+  document.getElementById('qzBarFill').style.width = '100%';
+  document.getElementById('qzRestartBtn').addEventListener('click', qzStart);
+}
+qzStart();
+</script>
+</body>
+</html>
